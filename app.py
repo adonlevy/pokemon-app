@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from helpers import get_pokemon, search_pokemon
+from multiprocessing import Pool
 
 app = Flask(__name__)
 
@@ -11,16 +12,26 @@ def index():
 
 @app.route('/gen1', methods=['GET'])
 def region():
-    if request.method == 'GET':
-        pokemon = get_pokemon(151, 1)
-        return render_template('region.html', region="Generation 1", pokemon=pokemon)
+    p = Pool()
+    numbers = range(151)
+    result = p.map(get_pokemon, numbers)
+
+    p.close()
+    p.join()
+    print(result)
+    return render_template('region.html', region="Generation 1", pokemon=result)
 
 
 @app.route('/gen2', methods=['GET'])
 def johto():
-    if request.method == 'GET':
-        pokemon = get_pokemon(251, 2)
-        return render_template('region.html', region="Generation 2", pokemon=pokemon)
+    p = Pool()
+    numbers = range(152, 251)
+    result = p.map(get_pokemon, numbers)
+
+    p.close()
+    p.join()
+    print(result)
+    return render_template('region.html', region="Generation 2", pokemon=result)
 
 
 @app.route('/search', methods=['POST'])

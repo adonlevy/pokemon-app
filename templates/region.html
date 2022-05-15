@@ -7,5 +7,17 @@ Home
 {% block main %}
 <div class="container-fluid">
     <h1>{{ region }}</h1>
+
+    {% for i in pokemon %}
+    <div class="card flex-wrap" style="width: 12rem; height: 12rem;">
+        <img src="{{ i.sprite }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ i.name }}</h5>
+            <p class="card-text">Pokedex ID: {{i.pokedex}}</p>
+            <p class="card-text">Height: {{i.height}}</p>
+            <p class="card-text">Weight: {{i.weight}}</p>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

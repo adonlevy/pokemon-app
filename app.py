@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from helpers import get_pokemon
 
 app = Flask(__name__)
 
@@ -8,14 +9,18 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/kanto', methods=['GET'])
-def kanto():
-    return render_template('region.html', region="Kanto")
+@app.route('/gen1', methods=['GET'])
+def region():
+    if request.method == 'GET':
+        pokemon = get_pokemon(151, 1)
+        return render_template('region.html', region="Generation 1", pokemon=pokemon)
 
 
-@app.route('/johto', methods=['GET'])
+@app.route('/gen2', methods=['GET'])
 def johto():
-    return render_template('region.html', region="Johto")
+    if request.method == 'GET':
+        pokemon = get_pokemon(251, 2)
+        return render_template('region.html', region="Generation 2", pokemon=pokemon)
 
 
 if __name__ == '__main__':

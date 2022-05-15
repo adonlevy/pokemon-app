@@ -1,0 +1,22 @@
+{% extends "template.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block main %}
+<div class="container-fluid">
+    <h1>{{ pokemon.name }}</h1>
+
+    <div class="card flex-wrap" style="width: 12rem; height: 12rem;">
+        <img src="{{ pokemon.sprite }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ pokemon.name }}</h5>
+            <p class="card-text">Pokedex ID: {{pokemon.pokedex}}</p>
+            <p class="card-text">Height: {{pokemon.height}}</p>
+            <p class="card-text">Weight: {{pokemon.weight}}</p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
